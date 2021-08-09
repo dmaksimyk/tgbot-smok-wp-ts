@@ -1,0 +1,31 @@
+{
+    "extends": "fastify-tsconfig",
+    "compilerOptions": {
+      "target": "es6",
+      "sourceMap": false,
+      "outDir": "./build",
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "strictFunctionTypes": true,
+      "noImplicitThis": true,
+      "noUnusedParameters": false,
+      "noImplicitReturns": true,
+      "noUnusedLocals": false,
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "skipLibCheck": true,
+      "baseUrl": "./src/",
+      "declaration": false
+    },
+    "ts-node": {
+      "require": ["tsconfig-paths/register"]
+    },
+    "exclude": [
+      "node_modules"
+    ],
+    "include": [
+      "./src/**/*.ts"
+    ]
+  }
