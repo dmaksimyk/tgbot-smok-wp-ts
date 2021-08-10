@@ -4,12 +4,12 @@ const DeleteMessage = (message: MessageContext) => {
   if (message.text) {
     message
       .editMessageText(message.text)
-      .then(() => console.log)
+      .then()
       .catch(() => console.log("Изменено"));
   } else {
     message
       .deleteMessage()
-      .then(() => console.log)
+      .then()
       .catch(() => console.log("Удалено"));
   }
 };

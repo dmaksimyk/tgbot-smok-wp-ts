@@ -12,6 +12,9 @@
   "author": "d_maksimyk",
   "license": "ISC",
   "dependencies": {
+    "@puregram/prompt": "^1.2.0",
+    "@puregram/scenes": "^2.0.1-rc.1",
+    "@puregram/session": "^2.0.1-rc.1",
     "app-root-path": "^3.0.0",
     "kill-port": "^1.6.1",
     "mongoose": "^5.13.6",
