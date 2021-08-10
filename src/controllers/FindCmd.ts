@@ -1,5 +1,5 @@
 import { START_DIALOG } from "config";
-import { ErrorCmd, Help, Menu } from "modules";
+import { ErrorCmd, Help, Menu, Products } from "modules";
 import { MessageContext } from "puregram";
 
 const FindCmd = (message: string, context: MessageContext) => {
@@ -12,6 +12,9 @@ const FindCmd = (message: string, context: MessageContext) => {
       break;
     case "🆘 Помощь":
       Help(context);
+      break;
+    case "📃 Товары":
+      Products(context);
       break;
     default:
       ErrorCmd(context);
