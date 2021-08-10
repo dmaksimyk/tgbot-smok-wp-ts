@@ -1,9 +1,8 @@
 import { ERRCMD_CAPTION } from "config";
-import { MessageContext } from "puregram";
 import { keyboardErrCmd } from "Keyboards";
+import { MessageContext } from "puregram";
 
-const ErrorCmd = (context: MessageContext) => {
-  return context.send(ERRCMD_CAPTION, { reply_markup: keyboardErrCmd });
-};
+const ErrorCmd = (context: MessageContext) =>
+  context.send(ERRCMD_CAPTION, { reply_markup: keyboardErrCmd });
 
 export default ErrorCmd;

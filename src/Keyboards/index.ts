@@ -1,5 +1,9 @@
 import { KeyboardBuilder, InlineKeyboardBuilder } from "puregram";
 
+export const keyboardErrCmd = new InlineKeyboardBuilder()
+  .textButton({ text: "📕 Меню", payload: "⬅ Меню" })
+  .textButton({ text: "🆘 Помощь", payload: "🆘 Помощь" });
+
 export const keyboardMenu = new KeyboardBuilder()
   .textButton("📃 Товары")
   .textButton("🈹 Акции")
@@ -9,10 +13,6 @@ export const keyboardMenu = new KeyboardBuilder()
   .row()
   .textButton("🆘 Помощь")
   .resize();
-
-export const keyboardErrCmd = new InlineKeyboardBuilder()
-  .textButton({ text: "📕 Меню", payload: "⬅ Меню" })
-  .textButton({ text: "🆘 Помощь", payload: "🆘 Помощь" });
 
 export const keyboardHelp = new KeyboardBuilder()
   .textButton("⬅ Меню")

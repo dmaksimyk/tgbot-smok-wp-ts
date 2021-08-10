@@ -1,7 +1,10 @@
-import { MessageContext } from "puregram"
+import { MessageContext } from "puregram";
 
 const DeleteMessage = (message: MessageContext) => {
-  message.deleteMessage();
-}
+  message
+    .deleteMessage()
+    .then(() => console.log)
+    .catch(() => console.log("Удалено"));
+};
 
-export default DeleteMessage
+export default DeleteMessage;

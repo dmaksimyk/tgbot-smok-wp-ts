@@ -5,17 +5,13 @@ import { FindCmd, FindCmdCallback } from "controllers";
 const bot = Telegram.fromToken(TOKEN);
 
 bot.updates.on("message", (context) => {
-  const message = context.text;
-
-  if (!message) return;
-  FindCmd(message, context);
+  if (!context.text) return;
+  FindCmd(context.text, context);
 });
 
 bot.updates.on("callback_query", (context) => {
-  const msgContext = context.message;
-
-  if (!msgContext) return;
-  FindCmdCallback(msgContext, context);
+  if (!context.message) return;
+  FindCmdCallback(context.message, context);
 });
 
 bot.updates
