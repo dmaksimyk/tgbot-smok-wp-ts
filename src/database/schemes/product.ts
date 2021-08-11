@@ -11,7 +11,7 @@ const SaveUser = new mongoose.Schema(
     name: String,
     text: String,
     price: Number,
-    photo: String,
+    photo: 'Buffer',
   },
   {
     collection: "product",

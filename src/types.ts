@@ -16,7 +16,7 @@ export type TMethods = {
     name: string;
     text: string;
     price: number;
-    photo: string;
+    photo: any;
   };
   ["SAVE_STOCK"]: { id: number; name: string };
   ["DELETE_PRODUCT"]: { id: number };
