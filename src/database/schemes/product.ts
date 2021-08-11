@@ -2,11 +2,16 @@ import mongoose from "mongoose";
 
 const SaveUser = new mongoose.Schema(
   {
-    id: Number,
+    id: {
+      type: Number,
+      default: Date.now()
+    },
+    category: String,
+    brand: String,
     name: String,
     text: String,
+    price: Number,
     photo: String,
-    count: Number,
   },
   {
     collection: "product",

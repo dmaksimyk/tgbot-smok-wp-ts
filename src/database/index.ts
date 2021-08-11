@@ -21,10 +21,12 @@ const database: TParams = async (type: TTypes, data) => {
     case "GET_STOCK":
       if (getStock) return getStock;
       return "ERR_GET_STOCK";
-    // case "GET":
-    //   if (getUser) return getUser._doc;
-    //   const dataUser = await new SavedUser(user).save();
-    //   return dataUser._doc;
+    case "SAVE_PRODUCT":
+      await new product(data).save();
+      return console.log("new product saved");
+    case "SAVE_STOCK":
+      await new stock(data).save();
+      return console.log("new stock saved");
     default:
       return console.log("database: type not found");
   }

@@ -15,10 +15,15 @@
     "@puregram/prompt": "^1.2.0",
     "@puregram/scenes": "^2.0.1-rc.1",
     "@puregram/session": "^2.0.1-rc.1",
+    "@types/node-fetch": "^2.5.12",
+    "@types/sharp": "^0.28.5",
     "app-root-path": "^3.0.0",
+    "axios": "^0.21.1",
     "kill-port": "^1.6.1",
     "mongoose": "^5.13.6",
-    "puregram": "^2.2.0"
+    "node-fetch": "^2.6.1",
+    "puregram": "^2.2.0",
+    "sharp": "^0.28.3"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",
