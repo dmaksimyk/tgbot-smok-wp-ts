@@ -5,10 +5,7 @@ export const keyboardErrCmd = new InlineKeyboardBuilder()
   .textButton({ text: "📕 Меню", payload: "⬅ Меню" })
   .textButton({ text: "🆘 Помощь", payload: "🆘 Помощь" });
 
-export const keyboardBack = new InlineKeyboardBuilder().textButton({
-  text: "⬅ Меню",
-  payload: "⬅ Меню",
-});
+export const keyboardBack = new KeyboardBuilder().textButton("⬅ Меню").resize();
 
 export const keyboardControl = new InlineKeyboardBuilder()
   .textButton({ text: "🛒 Товар", payload: "Товар" })
@@ -17,6 +14,12 @@ export const keyboardControl = new InlineKeyboardBuilder()
 export const keyboardProductControl = new InlineKeyboardBuilder()
   .textButton({ text: "✔ Добавить товар", payload: "Добавить товар" })
   .textButton({ text: "❌ Удалить товар", payload: "Удалить товар" });
+
+export const keyboardProductAddControl = new InlineKeyboardBuilder()
+  .textButton({ text: "⬅ Сначала", payload: "Назад" })
+  .row()
+  .textButton({ text: "✔ Добавить", payload: "Добавить" })
+  .textButton({ text: "❌ Отмена", payload: "Отмена" });
 
 export const generateKeyboardProducts = (arr: TProducts[]) => {
   const testBtns = new InlineKeyboardBuilder();

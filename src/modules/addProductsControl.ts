@@ -1,10 +1,10 @@
 import { ADMIN_ID } from "config";
 import { CallbackQueryContext } from "puregram";
+import { setScene } from "scenes";
+import { StepContext } from "@puregram/scenes";
 
-const AddProductsControl = (context: CallbackQueryContext) => {
-  if (context.senderId === ADMIN_ID) {
-    context.message?.send('okay, please wait...')
-  }
+const AddProductsControl = (context: CallbackQueryContext & StepContext) => {
+  if (context.senderId === ADMIN_ID) setScene("add_product", context);
   return;
 };
 

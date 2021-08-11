@@ -4,7 +4,7 @@ import { CallbackQueryContext } from "puregram";
 
 const ProductsControl = (context: CallbackQueryContext) => {
   if (context.senderId === ADMIN_ID) {
-    context.message?.send("Выберите дальнейшее действие:", {
+    context.message?.editMessageText("Выберите дальнейшее действие:", {
       reply_markup: keyboardProductControl,
     });
   }

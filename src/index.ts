@@ -1,19 +1,20 @@
 import { TOKEN } from "./config";
-import { Telegram } from "puregram";
+import { CallbackQueryContext, MessageContext, Telegram } from "puregram";
 import { FindCmd, FindCmdCallback } from "controllers";
-import { PromptManager } from "@puregram/prompt";
+import { sceneManager, sessionManager } from "scenes";
+import { StepContext } from "@puregram/scenes";
 
 const bot = Telegram.fromToken(TOKEN);
-const promptManager = new PromptManager();
 
-bot.updates.use(promptManager.middleware);
-bot.updates.on("message", (context) => {
-  console.log("msg:", context.senderId)
+bot.updates.use(sessionManager.middleware);
+bot.updates.use(sceneManager.middleware);
+bot.updates.use(sceneManager.middlewareIntercept);
+
+bot.updates.on("message", (context: StepContext & MessageContext) => {
   if (!context.text) return;
   FindCmd(context.text, context);
 });
-bot.updates.on("callback_query", (context) => {
-  console.log("cb:", context.senderId)
+bot.updates.on("callback_query", (context: StepContext & CallbackQueryContext) => {
   if (!context.message) return;
   FindCmdCallback(context.message, context);
 });
