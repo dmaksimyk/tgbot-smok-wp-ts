@@ -6,7 +6,7 @@ const product = new StepScene("add_stock", [
   async (context) => {
     // название
     if (context.scene.step.firstTime || !context.hasText) {
-      context.message.deleteMessage();
+      await context.message.deleteMessage();
       return context.message?.send(
         "Укажите название акции. (Пример: СКИДКА 10%, АКЦИЯ 3 + 1 и т.д.)"
       );
@@ -39,17 +39,21 @@ const product = new StepScene("add_stock", [
     }
 
     if (context?.queryPayload === "Назад") return context.scene.step.go(0);
-    context.message.deleteMessage();
     if (context?.queryPayload === "Добавить") {
       await database("SAVE_STOCK", {
         id: Date.now(),
         name: name,
         text: text,
       });
+      await context.message.deleteMessage();
       await context.message.send("Вы добавили акцию!");
     }
-    if (context?.queryPayload === "Отмена")
+    if (context?.queryPayload === "Отмена"){
+      await context.message.deleteMessage();
       await context.message.send("Вы отменили добавление акции!");
+    }
+
+    await context.send("Вы отменили добавление акции!")
     return context.scene.step.next();
   },
 ]);

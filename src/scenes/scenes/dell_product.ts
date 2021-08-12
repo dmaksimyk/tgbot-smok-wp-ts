@@ -29,7 +29,7 @@ const product = new StepScene("dell_product", [
           }
         );
 
-      context.message?.deleteMessage();
+      await context.message?.deleteMessage();
       return context.message?.send(
         "Укажите ID товара. ( Только цифры, ID находится в описании товара )",
         {
@@ -59,13 +59,17 @@ const product = new StepScene("dell_product", [
     }
 
     if (context?.queryPayload === "Назад") return context.scene.step.go(0);
-    context.message.deleteMessage();
     if (context?.queryPayload === "Удалить товар") {
       await database("DELETE_PRODUCT", { id: product.id })
+      await context.message.deleteMessage();
       await context.message.send("Вы успешно удалили товар!");
     }
-    if (context?.queryPayload === "Отмена")
+    if (context?.queryPayload === "Отмена") {
+      await context.message.deleteMessage();
       await context.message.send("Вы отменили удаление товара!");
+    }
+
+    await context.send("Вы отменили удаление товара!")
     return context.scene.step.next();
   },
 ]);

@@ -9,7 +9,7 @@ const product = new StepScene("add_product", [
   async (context) => {
     // категория
     if (context.scene.step.firstTime || !context.hasText) {
-      context.message.deleteMessage();
+      await context.message.deleteMessage();
       return context.message.send(
         "Укажите категорию товара. (Пример: Наушники, Одноразовые POD-системы, и т.д.)"
       );
@@ -97,7 +97,6 @@ const product = new StepScene("add_product", [
     }
 
     if (context?.queryPayload === "Назад") return context.scene.step.go(0);
-    context.message.deleteMessage();
     if (context?.queryPayload === "Добавить") {
       await database("SAVE_PRODUCT", {
         id: Date.now(),
@@ -108,10 +107,15 @@ const product = new StepScene("add_product", [
         price: Number(price),
         photo: image,
       });
+      await context.message.deleteMessage();
       await context.message.send("Вы добавили товар!");
     }
-    if (context?.queryPayload === "Отмена")
+    if (context?.queryPayload === "Отмена") {
+      await context.message.deleteMessage();
       await context.message.send("Вы отменили добавление товара!");
+    }
+
+    await context.send("Вы отменили добавление товара!")
     return context.scene.step.next();
   },
 ]);

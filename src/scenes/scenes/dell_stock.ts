@@ -29,7 +29,7 @@ const product = new StepScene("dell_stock", [
           }
         );
 
-      context.message?.deleteMessage();
+      await context.message?.deleteMessage();
       return context.message?.send(
         "Укажите ID акции. ( Только цифры, ID находится в описании акции )",
         {
@@ -67,10 +67,15 @@ const product = new StepScene("dell_stock", [
     context.message.deleteMessage();
     if (context?.queryPayload === "Удалить товар") {
       await database("DELETE_STOCK", { id: stock.id });
+      await context.message.deleteMessage();
       await context.message.send("Вы успешно удалили акцию!");
     }
-    if (context?.queryPayload === "Отмена")
+    if (context?.queryPayload === "Отмена") {
+      await context.message.deleteMessage();
       await context.message.send("Вы отменили удаление акции!");
+    }
+
+    await context.send("Вы отменили удаление акции!")
     return context.scene.step.next();
   },
 ]);
