@@ -1,6 +1,6 @@
 import { SessionManager } from "@puregram/session";
 import { SceneManager, StepContext } from "@puregram/scenes";
-import { add_product, dell_product } from "./scenes";
+import { add_product, add_stock, dell_product, dell_stock } from "./scenes";
 
 export const sessionManager = new SessionManager();
 export const sceneManager = new SceneManager();
@@ -14,5 +14,7 @@ export const setScene = (
 
 sceneManager.addScenes([
   ...[add_product],
-  ...[dell_product]
+  ...[dell_product],
+  ...[add_stock],
+  ...[dell_stock],
 ]);

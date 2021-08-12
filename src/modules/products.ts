@@ -10,12 +10,10 @@ const Products = (context: MessageContext) => {
       return context.send(PRODUCT_CAPTION_NONE, {
         reply_markup: keyboardBack,
       });
-    else {
-      context.send(PRODUCT_CAPTION, {
-        reply_markup: generateKeyboardProducts(list),
-      });
-      return console.log(list);
-    }
+    context.send(PRODUCT_CAPTION, {
+      reply_markup: generateKeyboardProducts(list),
+    });
+    return console.log(list);
   });
 };
 

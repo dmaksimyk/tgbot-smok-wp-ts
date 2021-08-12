@@ -6,7 +6,7 @@ import sharp from "sharp";
 import database from "database";
 
 const product = new StepScene("add_product", [
-  (context) => {
+  async (context) => {
     // категория
     if (context.scene.step.firstTime || !context.hasText) {
       context.message.deleteMessage();
@@ -18,7 +18,7 @@ const product = new StepScene("add_product", [
     context.scene.state.category = (context.text as string).toLocaleUpperCase();
     return context.scene.step.next();
   },
-  (context) => {
+  async (context) => {
     // бренд
     if (context.scene.step.firstTime || !context.hasText) {
       return context.send("Укажите бренд товара. (Пример: APPLE, HQD и т.д.)");
@@ -107,10 +107,11 @@ const product = new StepScene("add_product", [
         text: textProduct,
         price: Number(price),
         photo: image,
-      })
+      });
       await context.message.send("Вы добавили товар!");
     }
-    if (context?.queryPayload === "Отмена") await context.message.send("Вы отменили добавление товара!");
+    if (context?.queryPayload === "Отмена")
+      await context.message.send("Вы отменили добавление товара!");
     return context.scene.step.next();
   },
 ]);
