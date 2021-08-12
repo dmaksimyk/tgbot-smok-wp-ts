@@ -91,8 +91,7 @@ const product = new StepScene("add_product", [
       context.scene.state;
     if (context.scene.step.firstTime) {
       return context.sendPhoto(image, {
-        parse_mode: "MarkdownV2",
-        caption: `*Проверка данных:*\n\n_Категория:_ *${category}*\n_Бренд:_ *${brand}*\n_Название:_ *${nameProduct}*\n_Описание:_ *${textProduct}*\n_Цена за штуку:_ *${price} ${SYMBOL_RUB}*`,
+        caption: `Проверка данных:\n\nКатегория: ${category}\nБренд: ${brand}\nНазвание: ${nameProduct}\nОписание: ${textProduct}\nЦена за штуку: ${price} ${SYMBOL_RUB}`,
         reply_markup: keyboardProductAddControl,
       });
     }
