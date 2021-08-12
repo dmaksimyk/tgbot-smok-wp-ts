@@ -1,5 +1,11 @@
 import { DeleteMessage } from "controllers";
-import { AddProductsControl, Help, Menu, ProductsControl } from "modules";
+import {
+  AddProductsControl,
+  DellProductsControl,
+  Help,
+  Menu,
+  ProductsControl,
+} from "modules";
 import { CallbackQueryContext, MessageContext } from "puregram";
 import { StepContext } from "@puregram/scenes";
 
@@ -23,6 +29,9 @@ const FindCmd = (
       break;
     case "Добавить товар":
       AddProductsControl(contextCallback);
+      break;
+    case "Удалить товар":
+      DellProductsControl(contextCallback);
       break;
     default:
       break;

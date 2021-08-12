@@ -2,12 +2,9 @@ import { Telegram } from "puregram";
 
 export const ADMIN_ID: number = 770651836;
 export const DATABASE_LINK: string = "mongodb://127.0.0.1:27017/smok-tg-bot";
-
 export const PHONE: string = "+7 (995) 555 55-55";
 export const TOKEN: string = "1887588781:AAHezx6VceXcxQUBgDWRrLYV9jOaTaqSm88";
-
 export const bot = Telegram.fromToken(TOKEN);
-
 
 export const START_DIALOG: string = `Привет, Друг! 👋\nCпасибо, что зашел к нам, приятных покупок! 🛒`;
 export const MENU_CAPTION: string = `Вы вернулись в меню! =)`;

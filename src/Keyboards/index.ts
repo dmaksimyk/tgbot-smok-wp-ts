@@ -15,6 +15,10 @@ export const keyboardProductControl = new InlineKeyboardBuilder()
   .textButton({ text: "✔ Добавить товар", payload: "Добавить товар" })
   .textButton({ text: "❌ Удалить товар", payload: "Удалить товар" });
 
+export const keyboardDellProductControl = new InlineKeyboardBuilder()
+  .textButton({ text: "❌ Удалить товар", payload: "Удалить товар" })
+  .textButton({ text: "🛑 Отмена", payload: "Отмена" });
+
 export const keyboardProductAddControl = new InlineKeyboardBuilder()
   .textButton({ text: "⬅ Сначала", payload: "Назад" })
   .row()
