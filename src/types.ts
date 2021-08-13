@@ -25,12 +25,4 @@ export type TMethods = {
   ["GET_STOCK"]: undefined;
 };
 
-export type TProducts = {
-  id: number;
-  name: string;
-  text: string;
-  photo: string;
-  count: number;
-};
-
 export type TParams = <T extends TTypes>(type: T, data: TMethods[T]) => any;

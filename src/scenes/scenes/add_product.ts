@@ -109,14 +109,13 @@ const product = new StepScene("add_product", [
       });
       await context.message.deleteMessage();
       await context.message.send("Вы добавили товар!");
+      return context.scene.step.next();
     }
     if (context?.queryPayload === "Отмена") {
       await context.message.deleteMessage();
       await context.message.send("Вы отменили добавление товара!");
+      return context.scene.step.next();
     }
-
-    await context.send("Вы отменили добавление товара!")
-    return context.scene.step.next();
   },
 ]);
 

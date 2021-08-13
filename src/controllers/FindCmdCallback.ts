@@ -8,15 +8,38 @@ import {
   ProductsControl,
   StocksControl,
   AddStocksControl,
+  ProductsFilter,
 } from "modules";
 import { CallbackQueryContext, MessageContext } from "puregram";
 import { StepContext } from "@puregram/scenes";
+import { PRODUCT_CAPTION_BRAND } from "config";
 
 const FindCmd = (
   contextMessage: MessageContext,
   contextCallback: CallbackQueryContext & StepContext
 ) => {
   const msg = contextCallback.queryPayload;
+
+  if (/\//.test(msg) && /\:/.test(msg)) {
+    const rawEntries = msg.split(/\//);
+    let obj: any = {};
+    for (const rEntry of rawEntries) {
+      const value = rEntry.split(":");
+      if (value) obj[value[0]] = value[1];
+    }
+
+    if (obj.type === "product") {
+      // if (obj.name)
+
+      if (obj.category)
+        return ProductsFilter(
+          contextCallback,
+          PRODUCT_CAPTION_BRAND,
+          { name: obj.category, type: "category" },
+          "brand"
+        );
+    }
+  }
 
   switch (msg) {
     case "⬅ Меню":

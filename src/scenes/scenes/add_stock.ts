@@ -47,14 +47,13 @@ const product = new StepScene("add_stock", [
       });
       await context.message.deleteMessage();
       await context.message.send("Вы добавили акцию!");
+      return context.scene.step.next();
     }
-    if (context?.queryPayload === "Отмена"){
+    if (context?.queryPayload === "Отмена") {
       await context.message.deleteMessage();
       await context.message.send("Вы отменили добавление акции!");
+      return context.scene.step.next();
     }
-
-    await context.send("Вы отменили добавление акции!")
-    return context.scene.step.next();
   },
 ]);
 

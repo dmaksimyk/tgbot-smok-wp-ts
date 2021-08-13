@@ -64,19 +64,17 @@ const product = new StepScene("dell_stock", [
     }
 
     if (context?.queryPayload === "Назад") return context.scene.step.go(0);
-    context.message.deleteMessage();
     if (context?.queryPayload === "Удалить товар") {
       await database("DELETE_STOCK", { id: stock.id });
       await context.message.deleteMessage();
       await context.message.send("Вы успешно удалили акцию!");
+      return context.scene.step.next();
     }
     if (context?.queryPayload === "Отмена") {
       await context.message.deleteMessage();
       await context.message.send("Вы отменили удаление акции!");
+      return context.scene.step.next();
     }
-
-    await context.send("Вы отменили удаление акции!")
-    return context.scene.step.next();
   },
 ]);
 

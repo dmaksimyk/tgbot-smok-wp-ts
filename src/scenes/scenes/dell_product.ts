@@ -63,14 +63,13 @@ const product = new StepScene("dell_product", [
       await database("DELETE_PRODUCT", { id: product.id })
       await context.message.deleteMessage();
       await context.message.send("Вы успешно удалили товар!");
+      return context.scene.step.next();
     }
     if (context?.queryPayload === "Отмена") {
       await context.message.deleteMessage();
       await context.message.send("Вы отменили удаление товара!");
+      return context.scene.step.next();
     }
-
-    await context.send("Вы отменили удаление товара!")
-    return context.scene.step.next();
   },
 ]);
 

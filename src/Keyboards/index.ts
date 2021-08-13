@@ -1,23 +1,30 @@
-import { KeyboardBuilder, InlineKeyboardBuilder } from "puregram";
-import { TProducts } from "types";
+import {
+  KeyboardBuilder,
+  InlineKeyboardBuilder,
+  InlineKeyboard,
+} from "puregram";
+import product from "scenes/scenes/add_product";
+import { TMethods } from "types";
 
 export const keyboardErrCmd = new InlineKeyboardBuilder()
   .textButton({ text: "📕 Меню", payload: "⬅ Меню" })
   .textButton({ text: "🆘 Помощь", payload: "🆘 Помощь" });
 
 export const keyboardBack = new KeyboardBuilder().textButton("⬅ Меню").resize();
-export const keyboardCancellation = new InlineKeyboardBuilder()
-  .textButton({ text: "🛑 Отмена", payload: "Отмена" });
+export const keyboardCancellation = new InlineKeyboardBuilder().textButton({
+  text: "🛑 Отмена",
+  payload: "Отмена",
+});
 
 export const keyboardControl = new InlineKeyboardBuilder()
   .textButton({ text: "🛒 Товар", payload: "Товар" })
   .textButton({ text: "🧾 Акции", payload: "Акции" });
 
-  export const keyboardProductControl = new InlineKeyboardBuilder()
+export const keyboardProductControl = new InlineKeyboardBuilder()
   .textButton({ text: "✔ Добавить товар", payload: "Добавить товар" })
   .textButton({ text: "❌ Удалить товар", payload: "Удалить товар" });
 
-  export const keyboardStockControl = new InlineKeyboardBuilder()
+export const keyboardStockControl = new InlineKeyboardBuilder()
   .textButton({ text: "✔ Добавить акцию", payload: "Добавить акцию" })
   .textButton({ text: "❌ Удалить акцию", payload: "Удалить акцию" });
 
@@ -31,15 +38,21 @@ export const keyboardProductAddControl = new InlineKeyboardBuilder()
   .textButton({ text: "✔ Добавить", payload: "Добавить" })
   .textButton({ text: "❌ Отмена", payload: "Отмена" });
 
-export const generateKeyboardProducts = (arr: TProducts[]) => {
-  const testBtns = new InlineKeyboardBuilder();
-  arr.map((item) =>
-    testBtns
-      .textButton({ text: item.text, payload: `📃 Товары ${item.id}` })
-      .row()
-  );
-  return testBtns;
-};
+export const generateKeyboardProducts = (
+  products: TMethods["SAVE_PRODUCT"][],
+  type: "category" | "brand" | "name"
+  ) => {
+  const buttons = []
+
+  for (let product of products) {
+    buttons.push(InlineKeyboard.textButton({
+      text: product[type],
+      payload: `type:product/${type}:${product[type]}`,
+    }))
+  }
+
+  return InlineKeyboard.keyboard(buttons)
+}
 
 export const keyboardMenu = new KeyboardBuilder()
   .textButton("📃 Товары")
