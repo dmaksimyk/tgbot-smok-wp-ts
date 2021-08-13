@@ -6,6 +6,8 @@ export { default as ProductsFilter } from "./productsFilter";
 export { default as Control } from "./control";
 export { default as StocksControl } from "./stocksControl";
 export { default as ProductsControl } from "./productsControl";
+export { default as ProductPage } from "./productPage";
+
 
 export { default as AddProductsControl } from "./addProductsControl";
 export { default as DellProductsControl } from "./dellProductsControl";

@@ -12,7 +12,7 @@ const ProductsNavigation = (
   type: "category" | "brand" | "name"
 ) =>
   database("GET_PRODUCT", undefined).then(
-    (list: TMethods["SAVE_PRODUCT"][] | undefined) => {
+    async (list: TMethods["SAVE_PRODUCT"][] | undefined) => {
       if (!list || list.length < 1)
         return context.message?.editMessageText(PRODUCT_CAPTION_NONE, {
           reply_markup: keyboardBack,

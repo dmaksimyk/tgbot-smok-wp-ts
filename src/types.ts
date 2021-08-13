@@ -26,3 +26,22 @@ export type TMethods = {
 };
 
 export type TParams = <T extends TTypes>(type: T, data: TMethods[T]) => any;
+
+
+  // context: CallbackQueryContext,
+  // typePage: "products" | "stocks",
+  // text: string,
+  // prev: { name: string; type: "category" | "brand" | "name" },
+  // type: "category" | "brand" | "name"
+
+// export type TTypesGeneratePage = "products" | "stocks";
+// export type TGenerateMethods = {
+//   ["products"]: {
+//     name: string;
+//     type: "category" | "brand" | "name";
+//   };
+//   ["stocks"]: {
+//     id: string
+//   }
+// } 
+// export type TParamsGeneratePage = <T extends TTypesGeneratePage>(type: T, text: string, backPage: TGenerateMethods[T], type: ) => any;

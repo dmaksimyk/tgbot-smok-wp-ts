@@ -41,18 +41,38 @@ export const keyboardProductAddControl = new InlineKeyboardBuilder()
 export const generateKeyboardProducts = (
   products: TMethods["SAVE_PRODUCT"][],
   type: "category" | "brand" | "name"
-  ) => {
-  const buttons = []
+) => {
+  const buttons = [];
 
   for (let product of products) {
-    buttons.push(InlineKeyboard.textButton({
-      text: product[type],
-      payload: `type:product/${type}:${product[type]}`,
-    }))
+    buttons.push(
+      InlineKeyboard.textButton({
+        text: product[type],
+        payload:
+          type === "name"
+            ? `type:product/id:${product["id"]}`
+            : `type:product/${type}:${product[type]}`,
+      })
+    );
   }
 
-  return InlineKeyboard.keyboard(buttons)
-}
+  return InlineKeyboard.keyboard(buttons);
+};
+
+export const generateKeyboardBuy = (
+  type: "product" | "stock",
+  id: number
+) =>
+  InlineKeyboard.keyboard([
+    InlineKeyboard.textButton({
+      text: "🛒 Купить",
+      payload: `type:${type}/id:${id}}`,
+    }),
+    InlineKeyboard.textButton({
+      text: "⬅ Вернуться",
+      payload: `type:BACK/id:${id}}`,
+    }),
+  ]);
 
 export const keyboardMenu = new KeyboardBuilder()
   .textButton("📃 Товары")

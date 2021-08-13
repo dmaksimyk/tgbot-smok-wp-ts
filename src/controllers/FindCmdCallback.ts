@@ -9,10 +9,11 @@ import {
   StocksControl,
   AddStocksControl,
   ProductsFilter,
+  ProductPage,
 } from "modules";
 import { CallbackQueryContext, MessageContext } from "puregram";
 import { StepContext } from "@puregram/scenes";
-import { PRODUCT_CAPTION_BRAND } from "config";
+import { PRODUCT_CAPTION_BRAND, PRODUCT_CAPTION_PRODUCT } from "config";
 
 const FindCmd = (
   contextMessage: MessageContext,
@@ -31,6 +32,19 @@ const FindCmd = (
     if (obj.type === "product") {
       // if (obj.name)
 
+      // product page
+      if (obj.id) return ProductPage(contextCallback, Number(obj.id));
+
+      // products
+      if (obj.brand)
+        return ProductsFilter(
+          contextCallback,
+          PRODUCT_CAPTION_PRODUCT,
+          { name: obj.brand, type: "brand" },
+          "name"
+        );
+
+      // brands
       if (obj.category)
         return ProductsFilter(
           contextCallback,
