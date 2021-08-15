@@ -1,4 +1,4 @@
-import { ADMIN_ID, MENU_CAPTION } from "config";
+import { MENU_CAPTION } from "config";
 import { keyboardMenu, keyboardMenuAdmin } from "Keyboards";
 import { CallbackQueryContext, MessageContext } from "puregram";
 
@@ -10,12 +10,12 @@ const Menu = (
   if (allContext) {
     context.send(text || MENU_CAPTION, {
       reply_markup:
-        allContext.senderId === ADMIN_ID ? keyboardMenuAdmin : keyboardMenu,
+      (context as any).isAdmin ? keyboardMenuAdmin : keyboardMenu,
     });
   } else {
     context.send(text || MENU_CAPTION, {
       reply_markup:
-        context.senderId === ADMIN_ID ? keyboardMenuAdmin : keyboardMenu,
+      (context as any).isAdmin ? keyboardMenuAdmin : keyboardMenu,
     });
   }
 };

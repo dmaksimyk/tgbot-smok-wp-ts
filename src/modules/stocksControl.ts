@@ -1,9 +1,8 @@
-import { ADMIN_ID } from "config";
 import { keyboardStockControl } from "Keyboards";
 import { CallbackQueryContext } from "puregram";
 
 const StocksControl = (context: CallbackQueryContext) => {
-  if (context.senderId === ADMIN_ID)
+  if ((context as any).isAdmin)
     context.message?.editMessageText("Выберите дальнейшее действие:", {
       reply_markup: keyboardStockControl,
     });

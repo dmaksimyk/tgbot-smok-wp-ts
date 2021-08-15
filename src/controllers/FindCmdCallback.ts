@@ -8,12 +8,11 @@ import {
   ProductsControl,
   StocksControl,
   AddStocksControl,
-  ProductsFilter,
-  ProductPage,
+  GeneratePages,
 } from "modules";
 import { CallbackQueryContext, MessageContext } from "puregram";
 import { StepContext } from "@puregram/scenes";
-import { PRODUCT_CAPTION_BRAND, PRODUCT_CAPTION_PRODUCT } from "config";
+import { PRODUCT_CAPTION, PRODUCT_CAPTION_BRAND, PRODUCT_CAPTION_PRODUCT } from "config";
 
 const FindCmd = (
   contextMessage: MessageContext,
@@ -30,28 +29,20 @@ const FindCmd = (
     }
 
     if (obj.type === "product") {
-      // if (obj.name)
+      // back menu
+      if (obj.back) return GeneratePages(contextCallback, "start_products", PRODUCT_CAPTION);
 
-      // product page
-      if (obj.id) return ProductPage(contextCallback, Number(obj.id));
+      // next product page
+      if (obj.id) 
+        return GeneratePages(contextCallback, "product_page", "", Number(obj.id));
 
-      // products
+      // next products
       if (obj.brand)
-        return ProductsFilter(
-          contextCallback,
-          PRODUCT_CAPTION_PRODUCT,
-          { name: obj.brand, type: "brand" },
-          "name"
-        );
+        return GeneratePages( contextCallback, "products", PRODUCT_CAPTION_PRODUCT, 1, { name: obj.brand, type: "brand" }, "name" );
 
-      // brands
+      // next brands
       if (obj.category)
-        return ProductsFilter(
-          contextCallback,
-          PRODUCT_CAPTION_BRAND,
-          { name: obj.category, type: "category" },
-          "brand"
-        );
+        return GeneratePages( contextCallback, "products", PRODUCT_CAPTION_BRAND, 1, { name: obj.category, type: "category" }, "brand");
     }
   }
 

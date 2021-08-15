@@ -1,5 +1,5 @@
-import { START_DIALOG } from "config";
-import { Control, ErrorCmd, Help, Menu, Products } from "modules";
+import { PRODUCT_CAPTION, START_DIALOG } from "config";
+import { Control, ErrorCmd, Help, Menu, GeneratePages } from "modules";
 import { MessageContext } from "puregram";
 
 const FindCmd = (message: string, context: MessageContext) => {
@@ -14,7 +14,7 @@ const FindCmd = (message: string, context: MessageContext) => {
       Help(context);
       break;
     case "📃 Товары":
-      Products(context);
+      GeneratePages(context, "start_products", PRODUCT_CAPTION);
       break;
     case "🏚 Панель управления":
       Control(context)
