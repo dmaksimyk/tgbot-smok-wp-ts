@@ -41,18 +41,20 @@ export type TParams = <T extends TTypes>(type: T, data: TMethods[T]) => any;
 // prev: { name: string; type: "category" | "brand" | "name" },
 // type: "category" | "brand" | "name"
 
-export type TTypesGeneratePage = "products" | "start_stocks" | "start_products" | "product_page";
+export type TTypesGeneratePage = "products" | "start_stocks" | "start_products" | "product_page" | "stock_page";
 export type TGenerateMethodsPrev = {
   ["products"]: { name: string; type: "category" | "brand" | "name" };
   ["product_page"]: undefined
   ["start_stocks"]: undefined;
   ["start_products"]: undefined;
+  ["stock_page"]: undefined;
 };
 export type TGenerateMethodsType = {
   ["products"]: "category" | "brand" | "name";
   ["product_page"]: undefined
   ["start_stocks"]: undefined;
   ["start_products"]: undefined;
+  ["stock_page"]: undefined;
 };
 
 export type TGeneratePage = <T extends TTypesGeneratePage>(

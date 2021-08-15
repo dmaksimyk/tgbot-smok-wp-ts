@@ -2,7 +2,7 @@ import database from "database";
 import { CallbackQueryContext, MessageContext } from "puregram";
 import { TGeneratePage, TMethods } from "types";
 import { PRODUCT_CAPTION, PRODUCT_CAPTION_NONE, SYMBOL_RUB } from "config";
-import { generateKeyboardBuy, generateKeyboardProducts, keyboardBack } from "Keyboards";
+import { generateKeyboardBuy, generateKeyboardProducts, generateKeyboardStocks, keyboardBack, keyboardBackPage } from "Keyboards";
 import { FilterUnique } from "./CustomFunctions";
 import { anySendOrEditMessage, deleteMessage, editMessage, sendMessage, sendPhoto } from "./Messages";
 
@@ -29,6 +29,16 @@ const generatePages: TGeneratePage = async (
     return anySendOrEditMessage(context, PRODUCT_CAPTION_NONE, keyboardBack)
 
   switch (typePage) {
+    case "stock_page":
+      if (id) {
+        console.log("actions")
+        const stock_item: TMethods["SAVE_STOCK"] = data?.find((item: TMethods["SAVE_STOCK"]) => item.id === id)
+        editMessage(context, `${
+          (context as any).isAdmin && `🆔 <b>Название:</b> ${stock_item.name}\n\n`
+          }🛍 <b>Описание:</b> ${stock_item.text}`, 
+          keyboardBackPage("stock"))
+      } else console.log("generatePages-stock_page: send me id!");
+      return;
     case "product_page":
       if (id) {
         const product_item = data?.find((item: TMethods["SAVE_PRODUCT"]) => item.id === id)
@@ -43,7 +53,12 @@ const generatePages: TGeneratePage = async (
       return;
     case "start_stocks":
       const startPageStocksButtons = FilterUnique(data, "name");
-      return sendMessage(context, text, generateKeyboardProducts(startPageStocksButtons, "name"))
+      // if ((context as CallbackQueryContext).message?.attachments) {
+      //   (context as CallbackQueryContext).message?.deleteMessage();
+      //   return sendMessage(context, text, generateKeyboardStocks(startPageStocksButtons))
+      // } else {
+        return anySendOrEditMessage(context, text, generateKeyboardStocks(startPageStocksButtons))
+      // }
     case "start_products":
       const startProductsArray = FilterUnique(data, "category")
       if ((context as CallbackQueryContext).message?.attachments) {
@@ -58,8 +73,6 @@ const generatePages: TGeneratePage = async (
         const buttonsProduct = FilterUnique(filterProduct, type);
         return editMessage(context, text, generateKeyboardProducts(buttonsProduct, type))
       }
-      return;
-    case "stock_page":
       return;
     default:
       return console.log("generatePages: not found typePage")

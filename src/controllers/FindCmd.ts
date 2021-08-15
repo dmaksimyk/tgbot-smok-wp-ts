@@ -1,4 +1,4 @@
-import { PRODUCT_CAPTION, START_DIALOG } from "config";
+import { PRODUCT_CAPTION, START_DIALOG, STOCK_CAPTION } from "config";
 import { Control, ErrorCmd, Help, Menu, GeneratePages } from "modules";
 import { MessageContext } from "puregram";
 
@@ -15,6 +15,9 @@ const FindCmd = (message: string, context: MessageContext) => {
       break;
     case "📃 Товары":
       GeneratePages(context, "start_products", PRODUCT_CAPTION);
+      break;
+    case "🧾 Акции":
+      GeneratePages(context, "start_stocks", STOCK_CAPTION);
       break;
     case "🏚 Панель управления":
       Control(context)

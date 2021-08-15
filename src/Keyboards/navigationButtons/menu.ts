@@ -2,7 +2,7 @@ import { KeyboardBuilder } from "puregram";
 
 export const keyboardMenu = new KeyboardBuilder()
   .textButton("📃 Товары")
-  .textButton("🈹 Акции")
+  .textButton("🧾 Акции")
   .row()
   .textButton("🚚 Доставка")
   .textButton("📦 Опт")
@@ -12,7 +12,7 @@ export const keyboardMenu = new KeyboardBuilder()
 
 export const keyboardMenuAdmin = new KeyboardBuilder()
   .textButton("📃 Товары")
-  .textButton("🈹 Акции")
+  .textButton("🧾 Акции")
   .row()
   .textButton("🚚 Доставка")
   .textButton("📦 Опт")

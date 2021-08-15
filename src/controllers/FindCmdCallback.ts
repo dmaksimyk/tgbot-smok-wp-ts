@@ -12,7 +12,7 @@ import {
 } from "modules";
 import { CallbackQueryContext, MessageContext } from "puregram";
 import { StepContext } from "@puregram/scenes";
-import { PRODUCT_CAPTION, PRODUCT_CAPTION_BRAND, PRODUCT_CAPTION_PRODUCT } from "config";
+import { PRODUCT_CAPTION, PRODUCT_CAPTION_BRAND, PRODUCT_CAPTION_PRODUCT, STOCK_CAPTION } from "config";
 
 const FindCmd = (
   contextMessage: MessageContext,
@@ -26,6 +26,11 @@ const FindCmd = (
     for (const rEntry of rawEntries) {
       const value = rEntry.split(":");
       if (value) obj[value[0]] = value[1];
+    }
+
+    if (obj.type === "stock") {
+      if (obj.back) return GeneratePages(contextCallback, "start_stocks", STOCK_CAPTION);
+      if (obj.id) return GeneratePages(contextCallback, "stock_page", "", Number(obj.id))
     }
 
     if (obj.type === "product") {
