@@ -18,7 +18,6 @@ const anyDeleteAndSendMessage = (
       });
     }
     if (context instanceof MessageContext) {
-      context.deleteMessage();
       return context.send(msg, { parse_mode: "HTML", reply_markup: keyboard });
     }
   } catch (e) {

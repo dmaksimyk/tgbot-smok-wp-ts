@@ -13,4 +13,8 @@ export { default as DellProductsControl } from "./dellProductsControl";
 export { default as AddStocksControl } from "./addStocksControl";
 export { default as DellStocksControl } from "./dellStocksControl";
 
+export { default as AdminsControl } from "./adminsControl";
+export { default as AddAdminsControl } from "./addAdminsControl";
+export { default as DellAdminsControl } from "./dellAdminsControl";
+
 export { default as ErrorCmd } from "./errcmd";

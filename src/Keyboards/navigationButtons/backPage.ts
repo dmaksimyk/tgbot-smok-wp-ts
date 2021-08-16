@@ -10,8 +10,8 @@ export const keyboardBack = new KeyboardBuilder()
   .textButton("⬅ Меню")
   .resize();
 
-export const keyboardBackPage = (page: "product" | "stock") =>
+export const keyboardBackPage = (page?: "product" | "stock") =>
   new InlineKeyboardBuilder().textButton({
     text: "⬅ Вернуться",
-    payload: `type:${page}/back:category`,
+    payload: page ? `type:${page}/back:category` : "Вернуться",
   });

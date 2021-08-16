@@ -23,6 +23,9 @@ const database: TParams = async (type: TTypes, data) => {
     case "GET_ADMINS":
       const getAdmins = await admins.findOne(data);
       return getAdmins ? true : false;
+    case "GET_ALL_ADMINS":
+      const getAllAdmins = await admins.find();
+      return getAllAdmins;
     case "SAVE_PRODUCT":
       await new product(data).save();
       return console.log(`product ${text_add}`);
@@ -30,7 +33,7 @@ const database: TParams = async (type: TTypes, data) => {
       await new stock(data).save();
       return console.log(`stock ${text_add}`);
     case "SAVE_ADMINS":
-      await new stock(data).save();
+      await new admins(data).save();
       return console.log(`administator ${text_add}`);
     case "DELETE_PRODUCT":
       await product.deleteOne(data);

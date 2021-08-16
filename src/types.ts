@@ -11,7 +11,8 @@ export type TTypes =
   | "DELETE_STOCK"
   | "GET_ADMINS"
   | "DELETE_ADMINS"
-  | "SAVE_ADMINS";
+  | "SAVE_ADMINS"
+  | "GET_ALL_ADMINS";
 
 export type TMethods = {
   ["SAVE_PRODUCT"]: {
@@ -29,8 +30,9 @@ export type TMethods = {
   ["GET_PRODUCT"]: undefined;
   ["GET_STOCK"]: undefined;
   ["GET_ADMINS"]: { id: number };
+  ["GET_ALL_ADMINS"]: undefined;
   ["DELETE_ADMINS"]: { id: number };
-  ["SAVE_ADMINS"]: { id: number, approve: number }
+  ["SAVE_ADMINS"]: { id: number; approve: number };
 };
 
 export type TParams = <T extends TTypes>(type: T, data: TMethods[T]) => any;
@@ -41,17 +43,22 @@ export type TParams = <T extends TTypes>(type: T, data: TMethods[T]) => any;
 // prev: { name: string; type: "category" | "brand" | "name" },
 // type: "category" | "brand" | "name"
 
-export type TTypesGeneratePage = "products" | "start_stocks" | "start_products" | "product_page" | "stock_page";
+export type TTypesGeneratePage =
+  | "products"
+  | "start_stocks"
+  | "start_products"
+  | "product_page"
+  | "stock_page";
 export type TGenerateMethodsPrev = {
   ["products"]: { name: string; type: "category" | "brand" | "name" };
-  ["product_page"]: undefined
+  ["product_page"]: undefined;
   ["start_stocks"]: undefined;
   ["start_products"]: undefined;
   ["stock_page"]: undefined;
 };
 export type TGenerateMethodsType = {
   ["products"]: "category" | "brand" | "name";
-  ["product_page"]: undefined
+  ["product_page"]: undefined;
   ["start_stocks"]: undefined;
   ["start_products"]: undefined;
   ["stock_page"]: undefined;
