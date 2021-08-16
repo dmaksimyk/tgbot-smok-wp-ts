@@ -18,7 +18,7 @@ export const PRODUCT_CAPTION: string = `Список всех категорий
 export const PRODUCT_CAPTION_BRAND: string = `Список всех производителей:\n`;
 export const PRODUCT_CAPTION_PRODUCT: string = `Список всех товаров:\n`;
 export const PRODUCT_CAPTION_DESCRIPTON: string = `Описание товара:\n`;
-export const PRODUCT_CAPTION_NONE: string = `${PRODUCT_CAPTION}Мы еще не добавили продукцию, ожидайте, скоро всё будет хорошо! =)`;
+export const PRODUCT_CAPTION_NONE: string = `<b>На данный момент</b> нет ничего в данном разделе! \nОжидайте, всему своё время =)`;
 export const CONTROL_CAPTION: string = `Вы успешно вошли в панель управления.\nНажмите кнопку для продолжения.`;
 
 export const STOCK_CAPTION: string = `Список всех акций:\n`
