@@ -31,11 +31,10 @@ const generatePages: TGeneratePage = async (
   switch (typePage) {
     case "stock_page":
       if (id) {
-        console.log("actions")
         const stock_item: TMethods["SAVE_STOCK"] = data?.find((item: TMethods["SAVE_STOCK"]) => item.id === id)
         editMessage(context, `${
-          (context as any).isAdmin && `🆔 <b>Название:</b> ${stock_item.name}\n\n`
-          }🛍 <b>Описание:</b> ${stock_item.text}`, 
+          (context as any).isAdmin && `🆔 <b>ID Акции:</b> ${stock_item.id}\n\n`
+        }📃 <b>Название:</b> ${stock_item.name}\n✏ <b>Описание:</b> ${stock_item.text}`, 
           keyboardBackPage("stock"))
       } else console.log("generatePages-stock_page: send me id!");
       return;
@@ -53,15 +52,10 @@ const generatePages: TGeneratePage = async (
       return;
     case "start_stocks":
       const startPageStocksButtons = FilterUnique(data, "name");
-      // if ((context as CallbackQueryContext).message?.attachments) {
-      //   (context as CallbackQueryContext).message?.deleteMessage();
-      //   return sendMessage(context, text, generateKeyboardStocks(startPageStocksButtons))
-      // } else {
-        return anySendOrEditMessage(context, text, generateKeyboardStocks(startPageStocksButtons))
-      // }
+      return anySendOrEditMessage(context, text, generateKeyboardStocks(startPageStocksButtons))
     case "start_products":
       const startProductsArray = FilterUnique(data, "category")
-      if ((context as CallbackQueryContext).message?.attachments) {
+      if (context instanceof CallbackQueryContext && context.message?.attachments[0] ) {
         (context as CallbackQueryContext).message?.deleteMessage();
         return sendMessage(context, PRODUCT_CAPTION, generateKeyboardProducts(startProductsArray, "category"))
       } else {
