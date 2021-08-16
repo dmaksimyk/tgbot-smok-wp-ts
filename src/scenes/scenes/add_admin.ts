@@ -3,7 +3,7 @@ import { keyboardBackPage, keyboardProductAddControl } from "Keyboards";
 import database from "database";
 import { anyDeleteAndSendMessage, anySendOrEditMessage, sendMessage } from "modules/Messages";
 
-const TEXT_CANCEL_ADD_ADMIN: string = "<b>Вы отменили</b> добавление администратора!";
+const TEXT_CANCEL_ADD_ADMIN: string = "<b>Вы вышли</b> из раздела: <b>Добавление администраторов</b>!";
 
 const admin = new StepScene("add_admin", [
   async (context) => {
@@ -41,7 +41,7 @@ const admin = new StepScene("add_admin", [
     if (context.scene.step.firstTime) {
       return sendMessage(
         context, 
-        `<b>Проверка данных:</b>\n\n<b>ID пользователя</b>: ${admin_id}\n<b>Короткое имя пользователя:</b> ${admin_name}`, 
+        `<b>Проверка данных:</b>\n\n<b>ID пользователя</b>: ${admin_id}\n<b>Короткое имя пользователя:</b> ${admin_name}\n\n<b>ВАЖНО! ЗАПИШИТЕ ID АДМИНИСТРАТОРА ДЛЯ УДАЛЕНИЯ В БУДУЩЕМ</b>`, 
         keyboardProductAddControl
       );
     }

@@ -1,17 +1,14 @@
 import { StepScene } from "@puregram/scenes";
 import {
   generateKeyboardDellAdmins,
-  keyboardBackPage,
-  keyboardProductAddControl,
 } from "Keyboards";
 import database from "database";
 import {
   anyDeleteAndSendMessage,
   anySendOrEditMessage,
-  sendMessage,
 } from "modules/Messages";
 
-const TEXT_CANCEL_ADD_ADMIN: string = "<b>Вы вышли</b> из меню!";
+const TEXT_CANCEL_ADD_ADMIN: string = "<b>Вы вышли</b> из раздела: <b>Удаление администраторов</b>!";
 
 const admin = new StepScene("dell_admin", [
   async (context) => {

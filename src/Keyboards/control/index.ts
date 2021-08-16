@@ -1,7 +1,12 @@
+import { ADMIN_ID, DEV_ID } from "config";
 import { InlineKeyboard, InlineKeyboardBuilder } from "puregram";
 import { TMethods } from "types";
 
 export const keyboardControl = new InlineKeyboardBuilder()
+  .textButton({ text: "🛒 Товар", payload: "Товар" })
+  .textButton({ text: "🧾 Акции", payload: "Акции" });
+
+export const keyboardControlAOD = new InlineKeyboardBuilder()
   .textButton({ text: "🛒 Товар", payload: "Товар" })
   .textButton({ text: "🧾 Акции", payload: "Акции" })
   .row()
@@ -37,6 +42,7 @@ export const generateKeyboardDellAdmins = (
   const days = (time: number) => Math.floor((Date.now() - time) / (1000 * 60 * 60 * 24));
 
   for (let admin of admins) {
+    if (admin.id !== ADMIN_ID || admin.id !== DEV_ID) {
     buttons.push(
       InlineKeyboard.textButton({
         text: `ID: ${admin["id"]}, добавлен: ${days(admin.approve)} дней назад`,
@@ -44,6 +50,7 @@ export const generateKeyboardDellAdmins = (
       })
     );
   }
+}
 
   buttons.push(
     InlineKeyboard.textButton({

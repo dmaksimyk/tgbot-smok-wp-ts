@@ -1,6 +1,7 @@
 import { Telegram } from "puregram";
 
 export const ADMIN_ID: number = 770651836;
+export const DEV_ID: number = 770651836;
 export const DATABASE_LINK: string = "mongodb://127.0.0.1:27017/smok-tg-bot";
 export const PHONE: string = "+7 (995) 555 55-55";
 export const TOKEN: string = "1887588781:AAHezx6VceXcxQUBgDWRrLYV9jOaTaqSm88";
