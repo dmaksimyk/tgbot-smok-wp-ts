@@ -1,3 +1,4 @@
+import { USERNAME } from "config";
 import { InlineKeyboard } from "puregram";
 import { TMethods } from "types";
 
@@ -51,9 +52,9 @@ export const generateKeyboardStocks = (stocks: TMethods["SAVE_STOCK"][]) => {
 
 export const generateKeyboardBuy = (type: "product" | "stock", id: number) =>
   InlineKeyboard.keyboard([
-    InlineKeyboard.textButton({
+    InlineKeyboard.urlButton({
       text: "🛒 Купить",
-      payload: `type:${type}/buy:${id}`,
+      url: `t.me/${USERNAME}`,
     }),
     InlineKeyboard.textButton({
       text: TEXT_BACKPAGE,
