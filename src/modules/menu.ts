@@ -1,6 +1,7 @@
 import { MENU_CAPTION } from "config";
 import { keyboardMenu, keyboardMenuAdmin } from "Keyboards";
 import { CallbackQueryContext, MessageContext } from "puregram";
+import { sendMessage } from "./Messages";
 
 const Menu = (
   context: MessageContext,
@@ -8,15 +9,17 @@ const Menu = (
   allContext?: CallbackQueryContext
 ) => {
   if (allContext) {
-    context.send(text || MENU_CAPTION, {
-      reply_markup:
-      (context as any).isAdmin ? keyboardMenuAdmin : keyboardMenu,
-    });
+    sendMessage(
+      allContext,
+      text || MENU_CAPTION,
+      (context as any).isAdmin ? keyboardMenuAdmin : keyboardMenu
+    );
   } else {
-    context.send(text || MENU_CAPTION, {
-      reply_markup:
-      (context as any).isAdmin ? keyboardMenuAdmin : keyboardMenu,
-    });
+    sendMessage(
+      context,
+      text || MENU_CAPTION,
+      (context as any).isAdmin ? keyboardMenuAdmin : keyboardMenu
+    );
   }
 };
 

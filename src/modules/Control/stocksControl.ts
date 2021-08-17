@@ -1,11 +1,10 @@
 import { keyboardStockControl } from "Keyboards";
+import { editMessage } from "modules/Messages";
 import { CallbackQueryContext } from "puregram";
 
 const StocksControl = (context: CallbackQueryContext) => {
   if ((context as any).isAdmin)
-    context.message?.editMessageText("Выберите дальнейшее действие:", {
-      reply_markup: keyboardStockControl,
-    });
+    editMessage(context, "Выберите дальнейшее действие:", keyboardStockControl);
   return;
 };
 
