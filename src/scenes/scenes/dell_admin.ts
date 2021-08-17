@@ -10,7 +10,7 @@ import {
 
 const TEXT_CANCEL_ADD_ADMIN: string = "<b>Вы вышли</b> из раздела: <b>Удаление администраторов</b>!";
 
-const admin = new StepScene("dell_admin", [
+const dell_admin = new StepScene("dell_admin", [
   async (context) => {
     if (context.queryPayload) {
       switch (context.queryPayload) {
@@ -47,4 +47,4 @@ const admin = new StepScene("dell_admin", [
   },
 ]);
 
-export default admin;
+export default dell_admin;

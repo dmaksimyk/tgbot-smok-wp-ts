@@ -5,7 +5,7 @@ import { anyDeleteAndSendMessage, anySendOrEditMessage, sendMessage } from "modu
 
 const TEXT_CANCEL_ADD_ADMIN: string = "<b>Вы вышли</b> из раздела: <b>Добавление администраторов</b>!";
 
-const admin = new StepScene("add_admin", [
+const add_admin = new StepScene("add_admin", [
   async (context) => {
     if (context?.queryPayload === "Вернуться") {
       anySendOrEditMessage(context, TEXT_CANCEL_ADD_ADMIN)
@@ -61,4 +61,4 @@ const admin = new StepScene("add_admin", [
   },
 ]);
 
-export default admin;
+export default add_admin;

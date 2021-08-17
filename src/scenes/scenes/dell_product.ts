@@ -3,7 +3,7 @@ import { keyboardCancellation, keyboardDellProductControl } from "Keyboards";
 import database from "database";
 import { TMethods } from "types";
 
-const product = new StepScene("dell_product", [
+const dell_product = new StepScene("dell_product", [
   async (context) => {
     // step ID
     if (context?.queryPayload === "Отмена") {
@@ -73,4 +73,4 @@ const product = new StepScene("dell_product", [
   },
 ]);
 
-export default product;
+export default dell_product;

@@ -1,8 +1,10 @@
 import { StepScene } from "@puregram/scenes";
 import { keyboardProductAddControl } from "Keyboards";
 import database from "database";
+import { TMethods } from "types";
+import { sendMessage } from "modules/Messages";
 
-const product = new StepScene("add_stock", [
+const add_stock = new StepScene("add_stock", [
   async (context) => {
     // название
     if (context.scene.step.firstTime || !context.hasText) {
@@ -12,6 +14,16 @@ const product = new StepScene("add_stock", [
       );
     }
 
+    const stock: TMethods["SAVE_STOCK"][] | undefined = await database("GET_STOCK", undefined);
+    if (stock) {
+      const filter = stock.filter((data) => data.name === (context.text as string).toLocaleUpperCase())
+      console.log(filter);
+      if (filter.length >= 1) {
+        sendMessage(context, "Акция с таким названием уже существует, повторите попытку!");
+        return context.scene.leave();
+      }
+    }
+
     context.scene.state.name = (context.text as string).toLocaleUpperCase();
     return context.scene.step.next();
   },
@@ -19,7 +31,7 @@ const product = new StepScene("add_stock", [
     // описание
     if (context.scene.step.firstTime || !context.hasText) {
       return context.send(
-        "Текст акции. \n(Пример: Скидка всем 70% при покупке от 1000 рублей, и т.д.)"
+        "Укажите текст акции. \n(Пример: Скидка всем 70% при покупке от 1000 рублей, и т.д.)"
       );
     }
 
@@ -57,4 +69,4 @@ const product = new StepScene("add_stock", [
   },
 ]);
 
-export default product;
+export default add_stock;

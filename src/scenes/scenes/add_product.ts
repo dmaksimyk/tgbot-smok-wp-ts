@@ -4,8 +4,10 @@ import { bot, SYMBOL_RUB, TOKEN } from "config";
 import axios from "axios";
 import sharp from "sharp";
 import database from "database";
+import { TMethods } from "types";
+import { sendMessage } from "modules/Messages";
 
-const product = new StepScene("add_product", [
+const add_product = new StepScene("add_product", [
   async (context) => {
     // категория
     if (context.scene.step.firstTime || !context.hasText) {
@@ -90,6 +92,16 @@ const product = new StepScene("add_product", [
     const { category, brand, nameProduct, textProduct, price, image } =
       context.scene.state;
     if (context.scene.step.firstTime) {
+      const checkProduct: TMethods["SAVE_PRODUCT"][] | undefined = await database("GET_PRODUCT", undefined);
+      if (checkProduct) {
+        const sortProduct = checkProduct.filter((data) => data.category === category && data.brand === brand && data.name === nameProduct);
+        console.log(sortProduct);
+        if (sortProduct.length >= 1) {
+          sendMessage(context, "Такой товар уже существует, повторите попытку!");
+          return context.scene.leave();
+        }
+      }
+
       return context.sendPhoto(image, {
         caption: `Проверка данных:\n\nКатегория: ${category}\nБренд: ${brand}\nНазвание: ${nameProduct}\nОписание: ${textProduct}\nЦена за штуку: ${price} ${SYMBOL_RUB}`,
         reply_markup: keyboardProductAddControl,
@@ -119,4 +131,4 @@ const product = new StepScene("add_product", [
   },
 ]);
 
-export default product;
+export default add_product;
