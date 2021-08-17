@@ -1,4 +1,3 @@
-import { DeleteMessage } from "controllers";
 import {
   AddProductsControl,
   DellProductsControl,
@@ -21,6 +20,7 @@ import {
   PRODUCT_CAPTION_PRODUCT,
   STOCK_CAPTION,
 } from "config";
+import { deleteMessage } from "modules/Messages";
 
 const FindCmd = (
   contextMessage: MessageContext,
@@ -87,11 +87,11 @@ const FindCmd = (
 
   switch (msg) {
     case "⬅ Меню":
-      DeleteMessage(contextMessage);
+      deleteMessage(contextMessage);
       Menu(contextMessage, undefined, contextCallback);
       break;
     case "🆘 Помощь":
-      DeleteMessage(contextMessage);
+      deleteMessage(contextMessage);
       Help(contextMessage);
       break;
     case "Товар":
