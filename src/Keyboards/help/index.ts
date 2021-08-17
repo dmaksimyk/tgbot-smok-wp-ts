@@ -1,6 +1,6 @@
-import { KeyboardBuilder } from "puregram";
+import { USERNAME } from "config";
+import { InlineKeyboard } from "puregram";
 
-export const keyboardHelp = new KeyboardBuilder()
-  .textButton("⬅ Меню")
-  .textButton("📞 Прямая связь")
-  .resize();
+export const keyboardHelp = InlineKeyboard.keyboard([ 
+  InlineKeyboard.urlButton({text: "📞 Прямая связь", url: `t.me/${USERNAME}`}),
+])

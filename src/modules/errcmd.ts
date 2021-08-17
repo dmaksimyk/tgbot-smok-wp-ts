@@ -4,6 +4,6 @@ import { MessageContext } from "puregram";
 import { sendMessage } from "./Messages";
 
 const ErrorCmd = (context: MessageContext) =>
-  sendMessage(context, ERRCMD_CAPTION, { reply_markup: keyboardErrCmd });
+  sendMessage(context, ERRCMD_CAPTION, keyboardErrCmd);
 
 export default ErrorCmd;
