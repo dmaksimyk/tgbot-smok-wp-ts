@@ -95,7 +95,6 @@ const add_product = new StepScene("add_product", [
       const checkProduct: TMethods["SAVE_PRODUCT"][] | undefined = await database("GET_PRODUCT", undefined);
       if (checkProduct) {
         const sortProduct = checkProduct.filter((data) => data.category === category && data.brand === brand && data.name === nameProduct);
-        console.log(sortProduct);
         if (sortProduct.length >= 1) {
           sendMessage(context, "Такой товар уже существует, повторите попытку!");
           return context.scene.leave();

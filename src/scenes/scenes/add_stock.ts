@@ -17,7 +17,6 @@ const add_stock = new StepScene("add_stock", [
     const stock: TMethods["SAVE_STOCK"][] | undefined = await database("GET_STOCK", undefined);
     if (stock) {
       const filter = stock.filter((data) => data.name === (context.text as string).toLocaleUpperCase())
-      console.log(filter);
       if (filter.length >= 1) {
         sendMessage(context, "Акция с таким названием уже существует, повторите попытку!");
         return context.scene.leave();
