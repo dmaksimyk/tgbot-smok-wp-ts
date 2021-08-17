@@ -1,3 +1,12 @@
+import { 
+  CallbackQueryContext, 
+  MessageContext 
+} from "puregram";
+
+import { 
+  StepContext 
+} from "@puregram/scenes";
+
 import {
   AddProductsControl,
   DellProductsControl,
@@ -12,15 +21,17 @@ import {
   AddAdminsControl,
   DellAdminsControl,
 } from "modules";
-import { CallbackQueryContext, MessageContext } from "puregram";
-import { StepContext } from "@puregram/scenes";
+
 import {
   PRODUCT_CAPTION,
   PRODUCT_CAPTION_BRAND,
   PRODUCT_CAPTION_PRODUCT,
   STOCK_CAPTION,
 } from "config";
-import { deleteMessage } from "modules/Messages";
+
+import { 
+  deleteMessage 
+} from "modules/Messages";
 
 const FindCmd = (
   contextMessage: MessageContext,
@@ -44,7 +55,6 @@ const FindCmd = (
     }
 
     if (obj.type === "product") {
-      // back menu
       if (obj.back)
         return GeneratePages(
           contextCallback,
@@ -52,7 +62,6 @@ const FindCmd = (
           PRODUCT_CAPTION
         );
 
-      // next product page
       if (obj.id)
         return GeneratePages(
           contextCallback,
@@ -61,7 +70,6 @@ const FindCmd = (
           Number(obj.id)
         );
 
-      // next products
       if (obj.brand)
         return GeneratePages(
           contextCallback,
@@ -72,7 +80,6 @@ const FindCmd = (
           "name"
         );
 
-      // next brands
       if (obj.category)
         return GeneratePages(
           contextCallback,
