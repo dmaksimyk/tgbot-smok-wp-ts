@@ -29,5 +29,5 @@ module.exports = {
       new TsconfigPathsPlugin({})
     ],
   },
-  // externals: [nodeExternals()],
+  externals: [nodeExternals()],
 };
