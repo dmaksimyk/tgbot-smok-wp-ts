@@ -2,7 +2,7 @@ import { CallbackQueryContext, MessageContext } from "puregram";
 import { FindCmd, FindCmdCallback } from "controllers";
 import { sceneManager, sessionManager } from "scenes";
 import { StepContext } from "@puregram/scenes";
-import { bot } from "config";
+import { ADMIN_ID, bot, DEV_ID } from "config";
 import database from "database";
 
 bot.updates.use(async (context, next) => {
@@ -12,6 +12,7 @@ bot.updates.use(async (context, next) => {
   ) {
     const admin: boolean = await database("GET_ADMINS", { id: Number(context.senderId) || 1 });
     (context as any).isAdmin = admin;
+    if (context.senderId === ADMIN_ID && context.senderId === DEV_ID) (context as any).isAdmin = true;
   }
   return next();
 });
