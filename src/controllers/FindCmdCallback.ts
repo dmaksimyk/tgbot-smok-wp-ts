@@ -95,7 +95,7 @@ const FindCmd = (
   switch (msg) {
     case "⬅ Меню":
       deleteMessage(contextMessage);
-      Menu(contextMessage, undefined, contextCallback);
+      Menu(contextCallback, undefined);
       break;
     case "🆘 Помощь":
       deleteMessage(contextMessage);
