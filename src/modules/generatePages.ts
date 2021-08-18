@@ -46,7 +46,7 @@ const generatePages: TGeneratePage = async (
           (context as any).isAdmin && `🆔 <b>ID Товара:</b> ${product_item.id}\n\n`
           }🛍 <b>Название:</b> ${product_item.brand
           } ${product_item.name}\n📃 <b>Описание:</b> ${product_item.text
-          }\n\n💰 <b>Стоимость:</b> ${product_item.price} ${SYMBOL_RUB}`, 
+          }\n\n💰 <b>Стоимость:</b> ${product_item.price} ${SYMBOL_RUB} \n\n⚠ Работаем только после полной предоплаты!`, 
           generateKeyboardBuy("product", product_item.id))
       } else console.log("generatePages-product_page: send me id!")
       return;
