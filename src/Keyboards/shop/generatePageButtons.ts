@@ -12,15 +12,19 @@ export const generateKeyboardProducts = (
   const buttons = [];
 
   for (let product of products) {
-    buttons.push(
-      InlineKeyboard.textButton({
-        text: product[type],
-        payload:
-          type === "name"
-            ? `type:product/id:${product["id"]}`
-            : `type:product/${type}:${product[type]}`,
-      })
-    );
+    const payload: string =
+      type === "name"
+        ? `type:product/id:${product["id"]}`
+        : `type:product/${type}:${product[type]}`;
+    console.log(payload.length);
+    if (payload.length <= 64) {
+      buttons.push(
+        InlineKeyboard.textButton({
+          text: product[type],
+          payload: payload,
+        })
+      );
+    }
   }
 
   if (type !== "category")

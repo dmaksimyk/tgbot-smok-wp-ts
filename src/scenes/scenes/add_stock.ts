@@ -14,6 +14,12 @@ const add_stock = new StepScene("add_stock", [
       );
     }
 
+    if (context.message?.text && context.message?.text?.length >= 20) 
+      return sendMessage(context, "До 20 символов, повторите попытку, укажите название акции.");
+
+    if (context?.text && context.text?.length >= 20) 
+      return sendMessage(context, "До 20 символов, повторите попытку, укажите название акции.");
+
     const stock: TMethods["SAVE_STOCK"][] | undefined = await database("GET_STOCK", undefined);
     if (stock) {
       const filter = stock.filter((data) => data.name === (context.text as string).toLocaleUpperCase())
