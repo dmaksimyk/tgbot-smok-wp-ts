@@ -11,9 +11,12 @@ bot.updates.use(async (context, next) => {
     context instanceof CallbackQueryContext
   ) {
     console.log("user:", Number(context.senderId));
-    const admin: boolean = await database("GET_ADMINS", { id: Number(context.senderId) || 1 });
+    const admin: boolean = await database("GET_ADMINS", {
+      id: Number(context.senderId) || 1,
+    });
     (context as any).isAdmin = admin;
-    if (context.senderId === ADMIN_ID && context.senderId === DEV_ID) (context as any).isAdmin = true;
+    if (context.senderId === ADMIN_ID || context.senderId === DEV_ID)
+      (context as any).isAdmin = true;
   }
   return next();
 });

@@ -1,15 +1,14 @@
 import { Telegram } from "puregram";
-export const PROD_OR_DEV: "DEV" | "PROD" = "DEV";
 
-export const ADMIN_ID: number = 770651836;
+export const ADMIN_ID: number = 850674915;
 export const DEV_ID: number = 770651836;
 export const DATABASE_LINK: string = "mongodb://127.0.0.1:27017/smok-tg-bot";
 export const PHONE: string = "+7 (996) 575 30-33";
-export const USERNAME: string = PROD_OR_DEV === "DEV" ? "d_maksimyk" : "";
-export const TOKEN: string = PROD_OR_DEV === "DEV" ? "1887588781:AAHezx6VceXcxQUBgDWRrLYV9jOaTaqSm88" : "";
+export const USERNAME: string = "nikitanaumenkoo";
+export const TOKEN: string = "1772035158:AAFurLXgDMjCqQ2KIQk49kcNPobKyDTtIgg";
 export const bot = Telegram.fromToken(TOKEN);
 
-export const SYMBOL_RUB: string = "₽";
+export const SYMBOL_RUB: string = "₽"
 
 export const START_DIALOG: string = `Привет, Друг! 👋\nCпасибо, что зашел к нам, приятных покупок! 🛒`;
 export const MENU_CAPTION: string = `Вы вернулись в меню! =)`;
@@ -60,4 +59,4 @@ export const WHOLESALE_CAPTION: string = `<b>✅ Опт ✅</b>\n
  · От 10 штук 360
  · От 20 штук 330`;
 
-export const STOCK_CAPTION: string = `Список всех акций:\n`;
+export const STOCK_CAPTION: string = `Список всех акций:\n`                                                                                   
