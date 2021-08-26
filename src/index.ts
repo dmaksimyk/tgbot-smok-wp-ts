@@ -10,7 +10,6 @@ bot.updates.use(async (context, next) => {
     context instanceof MessageContext ||
     context instanceof CallbackQueryContext
   ) {
-    console.log("user:", Number(context.senderId));
     const admin: boolean = await database("GET_ADMINS", {
       id: Number(context.senderId) || 1,
     });
