@@ -17,11 +17,11 @@ const add_product = new StepScene("add_product", [
       );
     }
 
-    if (context.message?.text && context.message?.text?.length >= 20) 
-      return sendMessage(context, "До 20 символов, повторите попытку, укажите категорию товара.");
+    if (context.message?.text && context.message?.text?.length >= 18) 
+      return sendMessage(context, "До 18 символов, повторите попытку, укажите категорию товара.");
 
-    if (context?.text && context.text?.length >= 20) 
-      return sendMessage(context, "До 20 символов, повторите попытку, укажите категорию товара.");
+    if (context?.text && context.text?.length >= 18) 
+      return sendMessage(context, "До 18 символов, повторите попытку, укажите категорию товара.");
 
     context.scene.state.category = (context.text as string).toLocaleUpperCase();
     return context.scene.step.next();
